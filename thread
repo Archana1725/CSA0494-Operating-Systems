@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+#include<pthread.h>
+void *mythreadfun(void *vargp){
+	sleep(1);
+	printf("printing sampath\n");
+	pthread_exit(NULL);
+}
+int main(){
+	pthread_t thread_id;
+	printf("before thread\n");
+	pthread_create(&thread_id,NULL,mythreadfun,NULL);
+	pthread_join(thread_id,NULL);
+	printf("after thread:\n");
+	if(pthread_equal(thread_id,pthread_self()))
+	{
+		printf("thread id is equal to main thread id");
+	}
+	else
+	{
+		printf("not equal");
+	}
+	exit(0);
+}
