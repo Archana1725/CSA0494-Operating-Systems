@@ -1,0 +1,50 @@
+#include<stdio.h>
+#define max 100
+int main()
+{
+	int numblo,numpro;
+	int mem[max],alloc[max];
+	int blocksize[max],prosize[max];
+	int i,j;
+	printf("enter no of blocks:");
+	scanf("%d",&numblo);
+	printf("enter the size of block:");
+	for(i=0;i<numblo;i++){
+	scanf("%d",&blocksize[i]);
+	mem[i]=blocksize[i];}
+	printf("enter no of processess:");
+	scanf("%d",&numpro);
+	printf("enter size of processess:");
+	for(i=0;i<numpro;i++)
+	{
+		scanf("%d",&prosize[i]);
+		alloc[i]=-1;
+	}
+	for(i=0;i<numblo;i++)
+	{
+		for(j=0;j<numpro;j++)
+		{
+			if(mem[j]>prosize[i])
+			{
+				alloc[i]=j;
+				mem[j]=prosize[i];
+				break;
+			}
+		}
+	}
+	printf("\nprocess no\tprocess size\tblock no\n");
+	for(i=0;i<numpro;i++)
+	{
+		printf("%d\t\t%d\t\t",i+1,prosize[i]);
+		if(alloc[i]=-1){
+			printf("%d\n",alloc[i]);
+		}
+	else
+	{
+		printf("not allocated");
+	}
+}
+	return 0;
+	
+
+}
